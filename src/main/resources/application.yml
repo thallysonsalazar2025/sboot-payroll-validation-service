@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: sboot-payroll-validation-service
+
+logging:
+  level:
+    com.example.payrollvalidation: INFO
