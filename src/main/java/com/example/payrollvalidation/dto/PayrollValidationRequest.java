@@ -1,0 +1,14 @@
+package com.example.payrollvalidation.dto;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+public record PayrollValidationRequest(
+        String employeeId,
+        BigDecimal baseSalary,
+        BigDecimal workedHours,
+        BigDecimal overtimeHours,
+        List<BigDecimal> discounts,
+        String period
+) {
+}
