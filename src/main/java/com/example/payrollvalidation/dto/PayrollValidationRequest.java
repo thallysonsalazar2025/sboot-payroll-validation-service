@@ -11,4 +11,7 @@ public record PayrollValidationRequest(
         List<BigDecimal> discounts,
         String period
 ) {
+    public PayrollValidationRequest {
+        discounts = discounts == null ? null : List.copyOf(discounts);
+    }
 }

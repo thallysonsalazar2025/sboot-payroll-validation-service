@@ -9,6 +9,7 @@ import com.example.payrollvalidation.dto.PayrollValidationResponse;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -40,5 +41,19 @@ class PayrollValidationServiceImplTest {
 
         assertTrue(response.valid());
         assertTrue(response.errors().isEmpty());
+    }
+
+    @Test
+    void shouldDefensivelyCopyValidators() {
+        List<PayrollValidator> validators = new ArrayList<>();
+        validators.add(new EmployeeValidator());
+        PayrollValidationServiceImpl service = new PayrollValidationServiceImpl(validators);
+        validators.clear();
+
+        PayrollValidationRequest request = new PayrollValidationRequest(
+                "", BigDecimal.TEN, BigDecimal.ONE, BigDecimal.ZERO, List.of(), "2026-03"
+        );
+
+        assertFalse(service.validate(request).valid());
     }
 }

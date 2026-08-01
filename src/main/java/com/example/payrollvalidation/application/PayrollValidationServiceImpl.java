@@ -20,12 +20,12 @@ public class PayrollValidationServiceImpl implements PayrollValidationService {
     private final List<PayrollValidator> validators;
 
     public PayrollValidationServiceImpl(List<PayrollValidator> validators) {
-        this.validators = validators;
+        this.validators = List.copyOf(validators);
     }
 
     @Override
     public PayrollValidationResponse validate(PayrollValidationRequest request) {
-        LOGGER.info("Iniciando validação da folha para employeeId={}", request.employeeId());
+        LOGGER.info("Iniciando validação da folha");
 
         List<String> errors = new ArrayList<>();
         validators.forEach(validator -> errors.addAll(validator.validate(request)));

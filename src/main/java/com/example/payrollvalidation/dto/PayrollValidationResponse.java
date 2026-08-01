@@ -6,4 +6,7 @@ public record PayrollValidationResponse(
         boolean valid,
         List<String> errors
 ) {
+    public PayrollValidationResponse {
+        errors = List.copyOf(errors);
+    }
 }
