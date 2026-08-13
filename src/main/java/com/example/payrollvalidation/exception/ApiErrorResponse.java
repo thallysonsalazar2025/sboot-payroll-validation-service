@@ -9,4 +9,7 @@ public record ApiErrorResponse(
         String message,
         List<String> errors
 ) {
+    public ApiErrorResponse {
+        errors = List.copyOf(errors);
+    }
 }
